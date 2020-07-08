@@ -1,9 +1,10 @@
 <template>
 <div class ="container">
   <div class="row">
-     <div class="col text-left">
+     <div v-for="pData in pDatas" :key="pData.id" class="col text-left">
+        <div ></div>
       <small>Passanger</small>
-      <p><b>Mr. Gavin Alfons</b></p>
+      <p><b>{{pData.id}}</b></p>
   </div>
    <div class="col text-right">
       <button type="button" class="btn btn-primary">  Add-os  </button>
@@ -11,21 +12,21 @@
 
   </div>
   <div class="row text-center">
-      <div class="col">
+      <div v-for="pData in pDatas" :key="pData.terminal" class="col">
                 <small>Terminal</small> 
-                <p>T#</p> 
+                <p>{{pData.terminal}}</p> 
         </div>
-         <div class="col">
+         <div v-for="pData in pDatas" :key="pData.checking" class="col">
                 <small>Checking</small> 
-                <p>D5</p> 
+                <p>{{pData.checking}}</p> 
             </div>
-           <div class="col">
+           <div v-for="pData in pDatas" :key="pData.gate"  class="col">
                 <small>Gate</small> 
-                <p>C</p> 
+                <p>{{pData.gate}}</p> 
             </div>
-            <div class="col">
+            <div v-for="pData in pDatas" :key="pData.boarding"  class="col">
                 <small>Boarding</small> 
-                <p>6:55</p> 
+                <p>{{pData.boarding}}</p> 
             </div>
   </div>
   <hr>
@@ -40,14 +41,26 @@
 </template>
 
 <script>
+
 export default {
-  name: 'PassangerData'
+  name: 'PassangerData',
+ data() {
+    return {
+      pDatas: [
+        {
+          id: "Mr. Gavin Alfons",
+          terminal: "T3",
+          checking: "D5",
+          gate: "C",
+          boarding: "6:55"
+        }
+      ]
+    };
+  }
   
-
 }
-</script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+</script>
 <style scoped>
 .btn{
   margin-top: 15px;

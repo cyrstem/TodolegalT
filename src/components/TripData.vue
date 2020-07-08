@@ -1,10 +1,9 @@
 <template>
-
     <div class="container">
         <div class="row">
             <div class="col text-left">
                 <p>Depart</p>
-                <h3>06:50</h3>
+                <h3>12:45</h3>
             </div>
             <div class="col text-center">  
                  <img alt="logo" src="../assets/emirates.png">
@@ -14,6 +13,7 @@
                 <h3><b>17:55</b></h3> 
             </div>
             <div class="w-100"></div>
+
             <div class="col-md-auto text-center">
                 <button type="button" class="btn btn-outline-success">10h 05m 0stop</button>
             </div>
@@ -25,7 +25,7 @@
             </div>
             <div class="col text-center">
                 <p>ETA490</p>
-                <small>A380-800</small>
+                <small>eee</small>
             </div>
             <div class="col text-right">
                 <p>Sunday</p> 
@@ -36,21 +36,25 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  name: 'TripData'
-//   props: {
-//     msg: String
-//   }
+  name: 'TripData',
+  data(){
+      return {
+          flight: []
+      }
+  },
+  async mounted(){
+      try{
+          const res = await axios.post(
+              'http://localhost:4000/graphql',{
+                  query:`{ flightNumber }`
+              })
+              this.flight = res.data.data.flight
+        }catch (e){
+            console.log('err',e)
+        }
+  }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-/* .box{
-    background-color: white;
-    color:black;
-    margin-top: 30px;
-    border: black;
-} */
-
-</style>
