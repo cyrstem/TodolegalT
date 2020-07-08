@@ -48,9 +48,9 @@ export default {
       try{
           const res = await axios.post(
               'http://localhost:4000/graphql',{
-                  query:`{ flightNumber }`
+                  query:`{ hello }`
               })
-              this.flight = res.data.data.flight
+              this.flight = res.data.data.hello
         }catch (e){
             console.log('err',e)
         }

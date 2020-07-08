@@ -1,32 +1,31 @@
 <template>
 <div class ="container">
   <div class="row">
-     <div v-for="pData in pDatas" :key="pData.id" class="col text-left">
-        <div ></div>
-      <small>Passanger</small>
-      <p><b>{{pData.id}}</b></p>
+     <div class="col text-left">
+      <small>Passenger</small>
+      <p><b>{{PassangerData}}</b></p>
   </div>
    <div class="col text-right">
       <button type="button" class="btn btn-primary">  Add-os  </button>
     </div>
-
+      <p></p>
   </div>
   <div class="row text-center">
-      <div v-for="pData in pDatas" :key="pData.terminal" class="col">
+      <div class="col">
                 <small>Terminal</small> 
-                <p>{{pData.terminal}}</p> 
+                <p></p> 
         </div>
-         <div v-for="pData in pDatas" :key="pData.checking" class="col">
+         <div class="col">
                 <small>Checking</small> 
-                <p>{{pData.checking}}</p> 
+                <p></p> 
             </div>
-           <div v-for="pData in pDatas" :key="pData.gate"  class="col">
+           <div  class="col">
                 <small>Gate</small> 
-                <p>{{pData.gate}}</p> 
+                <p></p> 
             </div>
-            <div v-for="pData in pDatas" :key="pData.boarding"  class="col">
+            <div class="col">
                 <small>Boarding</small> 
-                <p>{{pData.boarding}}</p> 
+                <p></p> 
             </div>
   </div>
   <hr>
@@ -41,21 +40,23 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
   name: 'PassangerData',
- data() {
+  data() {
     return {
-      pDatas: [
-        {
-          id: "Mr. Gavin Alfons",
-          terminal: "T3",
-          checking: "D5",
-          gate: "C",
-          boarding: "6:55"
-        }
-      ]
-    };
+      flight:[]
+    }
+  },async mounted() {
+    try{
+      const res = await axios.post(
+        'http://localhost:4000/graphql',{
+          query:'{fData { flightNumber,terminalNumber,gate,checkIn,boarding}}'
+        })
+        this.flight =res.data.data.fData
+    }catch(e){
+      console.log('err',e)
+    }
   }
   
 }
