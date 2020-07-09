@@ -1,9 +1,9 @@
 <template>
 <div class ="container">
   <div class="row">
-     <div  class="col text-left">
+     <div v-for ="(flight, index) in flights" :key="index" class="col text-left">
       <small>Passenger</small>
-      <p><b></b></p>
+      <p><b>{{flight.passenger[flight.passenger.length - 1].passengerName}}</b></p>
   </div>
    <div class="col text-right">
       <button type="button" class="btn btn-primary">  Add-os  </button>
