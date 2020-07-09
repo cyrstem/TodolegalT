@@ -1,7 +1,7 @@
 <template>
 <div class ="container">
   <div class="row">
-     <div v-for="flight in flights" :key="flight.passenger" class="col text-left">
+     <div  class="col text-left">
       <small>Passenger</small>
       <p><b></b></p>
   </div>
