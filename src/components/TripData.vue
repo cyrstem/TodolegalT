@@ -25,7 +25,7 @@
             </div>
             <div class="col text-center">
                 <p>ETA490</p>
-                <small>eee</small>
+                <small>eeeee</small>
             </div>
             <div class="col text-right">
                 <p>Sunday</p> 
@@ -36,25 +36,25 @@
 </template>
 
 <script>
-import axios from 'axios'
+//import axios from 'axios'
 export default {
-  name: 'TripData',
-  data(){
-      return {
-          flight: []
-      }
-  },
-  async mounted(){
-      try{
-          const res = await axios.post(
-              'http://localhost:4000/graphql',{
-                  query:`{ hello }`
-              })
-              this.flight = res.data.data.hello
-        }catch (e){
-            console.log('err',e)
-        }
-  }
+  name: 'TripData'
+//   data(){
+//       return {
+//           flight: []
+//       }
+//   },
+//   async mounted(){
+//       try{
+//           const res = await axios.post(
+//               'http://localhost:4000/graphql',{
+//                   query:`{ hello }`
+//               })
+//               this.flight = res.data.data.hello
+//         }catch (e){
+//             console.log('err',e)
+//         }
+//   }
 }
 </script>
 

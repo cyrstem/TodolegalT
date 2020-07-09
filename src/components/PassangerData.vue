@@ -1,31 +1,30 @@
 <template>
 <div class ="container">
   <div class="row">
-     <div class="col text-left">
+     <div v-for="flight in flights" :key="flight.passenger" class="col text-left">
       <small>Passenger</small>
-      <p><b>{{PassangerData}}</b></p>
+      <p><b></b></p>
   </div>
    <div class="col text-right">
       <button type="button" class="btn btn-primary">  Add-os  </button>
     </div>
-      <p></p>
   </div>
   <div class="row text-center">
-      <div class="col">
+      <div v-for="flight in flights" :key="flight.terminalNumber" class="col">
                 <small>Terminal</small> 
-                <p></p> 
+                <p>{{flight.terminalNumber}}</p> 
         </div>
-         <div class="col">
+         <div v-for="flight in flights" :key="flight.checkIn" class="col">
                 <small>Checking</small> 
-                <p></p> 
+                <p>{{flight.checkIn}}</p> 
             </div>
-           <div  class="col">
+           <div v-for="flight in flights" :key="flight.gate" class="col">
                 <small>Gate</small> 
-                <p></p> 
+                <p>{{flight.gate}}</p> 
             </div>
-            <div class="col">
+            <div v-for="flight in flights" :key="flight.boarding" class="col">
                 <small>Boarding</small> 
-                <p></p> 
+                <p>{{flight.boarding}}</p> 
             </div>
   </div>
   <hr>
@@ -45,20 +44,19 @@ export default {
   name: 'PassangerData',
   data() {
     return {
-      flight:[]
+      flights:[]
     }
   },async mounted() {
     try{
       const res = await axios.post(
         'http://localhost:4000/graphql',{
-          query:'{fData { flightNumber,terminalNumber,gate,checkIn,boarding}}'
+          query:'{fData{flightNumber,terminalNumber,checkIn,gate,boarding,passenger{passengerName}}}'
         })
-        this.flight =res.data.data.fData
+        this.flights =res.data.data.fData
     }catch(e){
       console.log('err',e)
     }
   }
-  
 }
 
 </script>

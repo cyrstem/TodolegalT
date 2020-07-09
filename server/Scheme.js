@@ -3,7 +3,7 @@ const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLList, GraphQLInt
 
 
 //vuelo data
-const fData =[{
+const flight =[{
     id:1,
     flightNumber:'12344',
     terminalNumber:'T3',
@@ -14,7 +14,7 @@ const fData =[{
 }]
 
 //pass data
-const pData =[{
+const passenger =[{
   id:1,
   passengerName: 'Mr.Gavin Alfons',
   passagerPassport:'12344454454',
@@ -39,7 +39,7 @@ const  FlightType = new GraphQLObjectType({
     boarding:{ type:GraphQLNonNull(GraphQLString)},
     passenger:{
       type: new GraphQLList(PassengerType),
-      resolve:()=> pData
+      resolve:()=> passenger
     }
 
   })
@@ -67,7 +67,7 @@ const RootQueryType = new GraphQLObjectType({
       fData:{
         type: new GraphQLList(FlightType),
         description: 'data from flight',
-        resolve: ()=> fData
+        resolve: ()=> flight
       }
     })
 
